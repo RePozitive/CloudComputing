@@ -1,13 +1,7 @@
-def ValueLine(list, limit_value=3, array_value=[], final_array=[]):
-    if len(list) == 0:
-        return 0
-    for i in list:
-        array_value.append([i, len(i)])
-    for j in array_value:
-        if j[1] >= limit_value:
-            final_array.append(j)
-    return final_array
-
-array = ["aa", "bbbb", "c", "ffffff", "t", "wwwwwwww"]      #[['bbbb', 4], ['ffffff', 6], ['wwwwwwww', 8]]
-array2 = []                                                 # 0
-print(ValueLine(array))
+def MaxLenList(array, unique_array=[], final_array=[]):
+    unique_array = list(set(map(lambda x : x[0], array)))
+    final_array = sorted([max(filter(lambda x : i in x, array)) for i in unique_array])
+    return [(i,len(i)) for i in final_array]
+    
+array = ["aa", "bbbb", "b", "ffffff", "fff", "wwwwwwww", "wwww"]      
+print(MaxLenList(array))
